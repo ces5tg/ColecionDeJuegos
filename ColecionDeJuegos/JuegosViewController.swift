@@ -12,10 +12,19 @@ class JuegosViewController: UIViewController , UIImagePickerControllerDelegate ,
 
     @IBOutlet weak var tituloTextField: UITextField!
     @IBOutlet weak var JuegoImageView: UIImageView!
+    @IBOutlet weak var agregarActualizarBoton: UIButton!
+    @IBOutlet weak var eliminarBoton: UIButton!
     
     var imagePicker = UIImagePickerController()
+    var juego:Juego? = nil
     
-    @IBAction func CamaraTopped(_ sender: Any) {
+    @IBAction func eliminarTapped(_ sender: Any) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        context.delete(juego!)
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        navigationController?.popViewController(animated:true)
+        
     }
     @IBAction func FotosTapped(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
@@ -23,16 +32,37 @@ class JuegosViewController: UIViewController , UIImagePickerControllerDelegate ,
 
     }
     @IBAction func AgregarTapped(_ sender: Any) {
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        let juego = Juego(context:context)
+//        juego.titulo = tituloTextField.text
+//        juego.imagen = JuegoImageView.image?.jpegData(compressionQuality: 0.50)
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//        navigationController?.popViewController(animated:true)
+        if juego != nil {
+                juego!.titulo! = tituloTextField.text!
+                juego!.imagen = JuegoImageView.image?.jpegData(compressionQuality:0.5)
+        }else {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let juego = Juego(context:context)
-        juego.titulo = tituloTextField.text
+            juego.titulo = tituloTextField.text
         juego.imagen = JuegoImageView.image?.jpegData(compressionQuality: 0.50)
+
+        }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         navigationController?.popViewController(animated:true)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        if juego != nil{
+            JuegoImageView.image = UIImage(data: (juego!.imagen!) as Data)
+            agregarActualizarBoton.setTitle("actualizar", for: .normal)
+        tituloTextField.text = juego!.titulo
+        }else {
+            eliminarBoton.isHidden = true
+        }
+
 
         // Do any additional setup after loading the view.
     }

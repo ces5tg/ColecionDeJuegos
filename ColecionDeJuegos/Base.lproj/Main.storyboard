@@ -32,7 +32,7 @@
                     <navigationItem key="navigationItem" id="e8P-6O-Yz1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="E69-2Q-NQm">
                             <connections>
-                                <segue destination="Zu1-S0-3Nn" kind="show" id="7aG-7p-cON"/>
+                                <segue destination="Zu1-S0-3Nn" kind="show" identifier="juegoSegue" id="7aG-7p-cON"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1016" y="129"/>
         </scene>
         <!--Juegos View Controller-->
         <scene sceneID="DW8-sf-ZI0">
@@ -79,12 +79,25 @@
                                     <action selector="AgregarTapped:" destination="Zu1-S0-3Nn" eventType="touchUpInside" id="OOR-Lq-eMD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpg-l5-UBa">
+                                <rect key="frame" x="182" y="375" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7bO-sB-YmX"/>
+                                    <constraint firstAttribute="width" constant="50" id="FGp-kO-ZyO"/>
+                                </constraints>
+                                <state key="normal" title="eliminar"/>
+                                <connections>
+                                    <action selector="eliminarTapped:" destination="Zu1-S0-3Nn" eventType="touchUpInside" id="6E3-87-dSL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="gJV-2w-tUu" firstAttribute="centerX" secondItem="zkL-4O-uHV" secondAttribute="centerX" id="5nl-xu-No3"/>
                             <constraint firstItem="gJV-2w-tUu" firstAttribute="top" secondItem="1Vr-43-e9e" secondAttribute="bottom" constant="20" id="5q4-sT-gkt"/>
+                            <constraint firstItem="zpg-l5-UBa" firstAttribute="centerX" secondItem="zkL-4O-uHV" secondAttribute="centerX" id="EKv-BM-nUc"/>
                             <constraint firstItem="1Vr-43-e9e" firstAttribute="top" secondItem="oIc-30-xoF" secondAttribute="top" constant="32" id="Fcq-H1-2z6"/>
+                            <constraint firstItem="zpg-l5-UBa" firstAttribute="top" secondItem="m10-F1-Ayg" secondAttribute="bottom" constant="15" id="S41-GO-9uR"/>
                             <constraint firstItem="m10-F1-Ayg" firstAttribute="top" secondItem="gJV-2w-tUu" secondAttribute="bottom" constant="20" id="SUy-T5-TH5"/>
                             <constraint firstItem="1Vr-43-e9e" firstAttribute="centerX" secondItem="zkL-4O-uHV" secondAttribute="centerX" id="fFd-zt-1OU"/>
                             <constraint firstItem="m10-F1-Ayg" firstAttribute="centerX" secondItem="zkL-4O-uHV" secondAttribute="centerX" id="lPS-g5-apQ"/>
@@ -98,15 +111,13 @@
                                     <action selector="FotosTapped:" destination="Zu1-S0-3Nn" id="t4E-AV-KkR"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="camara" id="Z4l-kz-mNY">
-                                <connections>
-                                    <action selector="CamaraTopped:" destination="Zu1-S0-3Nn" id="nrQ-RL-OOJ"/>
-                                </connections>
-                            </barButtonItem>
+                            <barButtonItem title="camara" id="Z4l-kz-mNY"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="JuegoImageView" destination="1Vr-43-e9e" id="7LN-7X-i6I"/>
+                        <outlet property="agregarActualizarBoton" destination="m10-F1-Ayg" id="s3M-zc-jVY"/>
+                        <outlet property="eliminarBoton" destination="zpg-l5-UBa" id="oQu-XG-bWJ"/>
                         <outlet property="tituloTextField" destination="gJV-2w-tUu" id="x5R-Kx-Z1c"/>
                     </connections>
                 </viewController>
