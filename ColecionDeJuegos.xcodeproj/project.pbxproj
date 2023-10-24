@@ -14,6 +14,7 @@
 		DB48C1182AE8596C00053E66 /* ColecionDeJuegos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB48C1162AE8596C00053E66 /* ColecionDeJuegos.xcdatamodeld */; };
 		DB48C11A2AE8597300053E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB48C1192AE8597300053E66 /* Assets.xcassets */; };
 		DB48C11D2AE8597300053E66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB48C11B2AE8597300053E66 /* LaunchScreen.storyboard */; };
+		DB48C1252AE867E300053E66 /* JuegosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB48C1242AE867E300053E66 /* JuegosViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DB48C1192AE8597300053E66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB48C11C2AE8597300053E66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB48C11E2AE8597300053E66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB48C1242AE867E300053E66 /* JuegosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				DB48C10F2AE8596C00053E66 /* SceneDelegate.swift */,
 				DB48C1112AE8596C00053E66 /* ViewController.swift */,
 				DB48C1132AE8596C00053E66 /* Main.storyboard */,
+				DB48C1242AE867E300053E66 /* JuegosViewController.swift */,
 				DB48C1192AE8597300053E66 /* Assets.xcassets */,
 				DB48C11B2AE8597300053E66 /* LaunchScreen.storyboard */,
 				DB48C11E2AE8597300053E66 /* Info.plist */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB48C1252AE867E300053E66 /* JuegosViewController.swift in Sources */,
 				DB48C1122AE8596C00053E66 /* ViewController.swift in Sources */,
 				DB48C10E2AE8596C00053E66 /* AppDelegate.swift in Sources */,
 				DB48C1102AE8596C00053E66 /* SceneDelegate.swift in Sources */,
