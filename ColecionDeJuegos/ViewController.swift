@@ -9,16 +9,6 @@
 import UIKit
 import CoreData
 class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return juegos.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let juego = juegos[indexPath.row]
-        cell.textLabel?.text = juego.titulo
-        cell.imageView?.image = UIImage(data: juego.imagen!)
-        return cell
-    }
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -36,8 +26,25 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
            super.setEditing(editing, animated:animated)
            if(self.isEditing){
                self.editButtonItem.title = "eliminar"
+           }else if(self.isEditing){
+               self.editButtonItem.title = "editar"
            }
+            
+        
        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return juegos.count
+     }
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell" , for:indexPath)
+         let juego = juegos[indexPath.row]
+         cell.textLabel?.text = juego.titulo
+         cell.imageView?.image = UIImage(data: juego.imagen!)
+         cell.detailTextLabel?.text = "\(juego.categoria)"
+         return cell
+     }
+    
     func obtenerJuegos() {
            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
        do{
@@ -69,7 +76,13 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
                }
 
            }
-           return [eliminarAction]
+        let editarAction = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
+            print("haz presionado eliminar de edit")
+            let juego = self.juegos[indexPath.row]
+            self.performSegue(withIdentifier: "juegoSegue" , sender:juego)
+
+        }
+           return [eliminarAction, editarAction]
        }
         func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let objetoMovido = self.juegos[fromIndexPath.row]

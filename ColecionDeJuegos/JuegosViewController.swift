@@ -8,16 +8,29 @@
 
 import UIKit
 
-class JuegosViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate{
+class JuegosViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate , UIPickerViewDataSource , UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categorias.count
+    }
+   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { return categorias[row]
+    
+    }
+    
 
     @IBOutlet weak var tituloTextField: UITextField!
     @IBOutlet weak var JuegoImageView: UIImageView!
     @IBOutlet weak var agregarActualizarBoton: UIButton!
     @IBOutlet weak var eliminarBoton: UIButton!
+    @IBOutlet weak var pickerCategorias: UIPickerView!
     
     var imagePicker = UIImagePickerController()
     var juego:Juego? = nil
-    
+    var categorias = ["categoria1" , "categoria2", "categoria3", "categoria4"]
+   var pick = ""
     @IBAction func eliminarTapped(_ sender: Any) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         context.delete(juego!)
@@ -41,12 +54,13 @@ class JuegosViewController: UIViewController , UIImagePickerControllerDelegate ,
         if juego != nil {
                 juego!.titulo! = tituloTextField.text!
                 juego!.imagen = JuegoImageView.image?.jpegData(compressionQuality:0.5)
+            juego!.categoria! = self.pick
         }else {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let juego = Juego(context:context)
             juego.titulo = tituloTextField.text
         juego.imagen = JuegoImageView.image?.jpegData(compressionQuality: 0.50)
-
+            juego.categoria = self.pick
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         navigationController?.popViewController(animated:true)
@@ -59,10 +73,14 @@ class JuegosViewController: UIViewController , UIImagePickerControllerDelegate ,
             JuegoImageView.image = UIImage(data: (juego!.imagen!) as Data)
             agregarActualizarBoton.setTitle("actualizar", for: .normal)
         tituloTextField.text = juego!.titulo
+            //imagePicker.select
+           
         }else {
+            
             eliminarBoton.isHidden = true
         }
-
+        pickerCategorias.dataSource = self
+        pickerCategorias.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -71,7 +89,13 @@ class JuegosViewController: UIViewController , UIImagePickerControllerDelegate ,
     JuegoImageView.image = imagenSeleccionada
     imagePicker.dismiss(animated:true , completion:nil)
     }
-
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let categoria = categorias[row]
+        print(categoria)
+        self.pick = categoria
+        print(self.pick)
+        
+    }
     
     
     
